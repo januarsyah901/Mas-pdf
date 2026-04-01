@@ -43,10 +43,10 @@
   @apply text-blue-600 dark:text-blue-400 hover:underline;
 }
 .markdown-preview ul {
-  @apply list-disc list-inside mb-4 pl-4;
+  @apply list-disc list-outside mb-4 ml-6;
 }
 .markdown-preview ol {
-  @apply list-decimal list-inside mb-4 pl-4;
+  @apply list-decimal list-outside mb-4 ml-6;
 }
 .markdown-preview blockquote {
   @apply border-l-4 border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 py-2 px-4 mb-4 italic text-gray-600 dark:text-gray-400 rounded-r;

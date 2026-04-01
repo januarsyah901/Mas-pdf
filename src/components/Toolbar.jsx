@@ -6,7 +6,7 @@ const TOOLS = [
   { icon: Heading1, label: 'H1', text: '# Heading 1\n', selectionOffset: 2 },
   { icon: Heading2, label: 'H2', text: '## Heading 2\n', selectionOffset: 3 },
   { icon: Link, label: 'Link', text: '[title](url)', selectionOffset: 1 },
-  { icon: Code, label: 'Code', text: '\`code\`', selectionOffset: 1 },
+  { icon: Code, label: 'Code', text: '`code`', selectionOffset: 1 },
   { icon: Minus, label: 'Divider', text: '\n---\n', selectionOffset: 5 },
 ];
 
@@ -14,6 +14,7 @@ export default function Toolbar({ onInsert, isFocusMode, toggleFocusMode, isPrev
   return (
     <div className="flex flex-wrap items-center justify-between w-full bg-gray-100 dark:bg-dark-700 px-2 sm:px-4 py-1.5 sm:py-2 border-b border-gray-200 dark:border-gray-600 transition-colors">
       <div className="flex items-center space-x-1 sm:space-x-2">
+        {/* eslint-disable-next-line no-unused-vars */}
         {TOOLS.map(({ icon: Icon, label, text, selectionOffset }) => (
           <button
             key={label}
