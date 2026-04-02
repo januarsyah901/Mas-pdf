@@ -32,11 +32,7 @@ export default function Sidebar({ documents, activeDocId, onCreate, onOpen, onRe
               isActive={doc.id === activeDocId}
               onClick={() => onOpen(doc.id)}
               onRename={(id, newTitle) => onRename(id, newTitle)}
-              onDelete={(id) => {
-                if (window.confirm(`Are you sure you want to delete "${doc.title}"?`)) {
-                  onDelete(id);
-                }
-              }}
+              onDelete={onDelete}
             />
           ))}
           {documents.length === 0 && (

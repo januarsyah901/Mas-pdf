@@ -14,6 +14,7 @@ import DropZone from './components/DropZone';
 import TableEditorModal from './components/TableEditorModal';
 import CustomCssPanel from './components/CustomCssPanel';
 import TemplateModal from './components/TemplateModal';
+import ConfirmModal from './components/ConfirmModal';
 
 import { useFileManager } from './hooks/useFileManager';
 import { useScrollSync } from './hooks/useScrollSync';
@@ -49,6 +50,13 @@ export default function App() {
   const [isTableModalOpen, setIsTableModalOpen] = useState(false);
   const [isCustomCssOpen, setIsCustomCssOpen] = useState(false);
   const [isTemplateModalOpen, setIsTemplateModalOpen] = useState(false);
+  const [confirmConfig, setConfirmConfig] = useState({ 
+    isOpen: false, title: '', message: '', type: 'warning', onConfirm: null, confirmText: 'Confirm' 
+  });
+
+  const showConfirm = (title, message, onConfirm, type = 'warning', confirmText = 'Confirm') => {
+    setConfirmConfig({ isOpen: true, title, message, onConfirm, type, confirmText });
+  };
 
   // v1.3 Persistent States
   const [selectedFont, setSelectedFont] = useState(() => {
@@ -159,6 +167,22 @@ export default function App() {
   const chars = countChars(activeContent);
   const charsNoSpace = countCharsNoSpace(activeContent);
 
+  const handleDeleteDocument = (id) => {
+    const doc = documents.find(d => d.id === id);
+    if (!doc) return;
+    
+    showConfirm(
+      "Hapus Dokumen?",
+      `Apakah Anda yakin ingin menghapus "${doc.title}"? Tindakan ini tidak bisa dibatalkan.`,
+      () => {
+        deleteDocument(id);
+        toast.success("Dokumen dihapus ✓");
+      },
+      "error",
+      "Hapus"
+    );
+  };
+
   return (
     <div className={`flex flex-col h-screen bg-gray-50 dark:bg-dark-900 text-gray-900 dark:text-gray-100 transition-colors font-sans overflow-hidden`}>
       <ExportModal 
@@ -185,6 +209,11 @@ export default function App() {
         isOpen={isTemplateModalOpen}
         onClose={() => setIsTemplateModalOpen(false)}
         onSelect={(template) => updateContent(template.content)}
+      />
+
+      <ConfirmModal 
+        {...confirmConfig} 
+        onClose={() => setConfirmConfig(prev => ({ ...prev, isOpen: false }))} 
       />
 
       {/* Header - Only visible when NOT in focus mode */}
@@ -228,7 +257,7 @@ export default function App() {
           onCreate={(title) => createDocument(title, '')}
           onOpen={openDocument}
           onRename={renameDocument}
-          onDelete={deleteDocument}
+          onDelete={handleDeleteDocument}
         />
 
         {/* Main Editor Area */}
