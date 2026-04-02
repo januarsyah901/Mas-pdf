@@ -3,7 +3,7 @@ import { X, FileText, Download } from 'lucide-react';
 import { exportToPdf } from '../utils/exportPdf';
 import toast from 'react-hot-toast';
 
-export default function ExportModal({ isOpen, onClose, getPreviewRef, selectedFont }) {
+export default function ExportModal({ isOpen, onClose, getPreviewRef, selectedFont, customCss }) {
   const [filename, setFilename] = useState(() => localStorage.getItem('mde_v11_pdf_filename') || 'document');
   const [paperSize, setPaperSize] = useState(() => localStorage.getItem('mde_v11_pdf_size') || 'a4');
   const [margin, setMargin] = useState(() => localStorage.getItem('mde_v11_pdf_margin') || 'Normal');
@@ -32,7 +32,15 @@ export default function ExportModal({ isOpen, onClose, getPreviewRef, selectedFo
     
     try {
       await new Promise(res => setTimeout(res, 50));
-      await exportToPdf({ element: el, filename, paperSize, margin, includeTitle, selectedFont });
+      await exportToPdf({ 
+        element: el, 
+        filename, 
+        paperSize, 
+        margin, 
+        includeTitle, 
+        selectedFont,
+        customCss 
+      });
       toast.success('PDF exported ✓', { id: toastId });
       onClose();
     } catch (err) {

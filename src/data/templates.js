@@ -2,133 +2,197 @@ export const templates = [
   {
     id: 'blank',
     label: 'Blank Document',
-    description: 'Empty markdown file ready for anything',
+    description: 'Start fresh with an empty canvas',
     content: ''
   },
   {
     id: 'readme',
     label: 'Project README',
-    description: 'Structure for project documentation',
+    description: 'Comprehensive structure for open-source or enterprise projects',
     content: `# 🚀 Project Title
 
-Short project description goes here.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
+
+> A brief, powerful description of what this project does and why it exists.
+
+## 📑 Table of Contents
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Getting Started](#-getting-started)
+- [API Reference](#-api-reference)
 
 ## ✨ Features
-- Feature one
-- Feature two
+- ⚡️ **High Performance:** Optimized for speed and scalability.
+- 🔒 **Secure:** Built-in authentication and authorization.
+- 📱 **Responsive:** Mobile-first approach using Tailwind CSS.
 
-## 🛠 Installation
+## 💻 Tech Stack
+- **Frontend:** Next.js, Tailwind CSS
+- **Backend:** Node.js, Prisma ORM
+- **Infrastructure:** Docker, CapRover
+
+## 🚀 Getting Started
+### Prerequisites
+- Node.js >= 18.x
+- Docker
+
+### Installation
 \`\`\`bash
+# Clone the repository
+git clone https://github.com/januarsyah901/project-name.git
+
+# Install dependencies
 npm install
+
+# Start development server
 npm run dev
 \`\`\`
-
-## 📝 Usage
-Describe how to use your project.
-
-## 📄 License
-MIT License
 `
   },
   {
     id: 'blog',
-    label: 'Blog Post',
-    description: 'Article layout with meta and intro',
-    content: `# My Amazing Blog Post
+    label: 'Technical Blog Post',
+    description: 'SEO-optimized article layout with frontmatter',
+    content: `
 
-**Published on:** 2024-04-02
-**Author:** bang jan
-
----
+# Mastering Modern Web Development
 
 ## Introduction
-Start with a hook that captures the reader's attention.
+Grab the reader's attention immediately. State the problem you're solving and what they will learn by reading this article.
 
-## Section 1: The Core Topic
-Explain your main point here. You can use **bold** or *italic* for emphasis.
+## The Core Concept
+Explain the technical details clearly. Use code blocks to demonstrate your points.
 
-> "A great quote can provide credibility and context."
+\`\`\`javascript
+// Example implementation
+const optimize = (data) => {
+  return data.filter(Boolean).map(item => item.value);
+};
+\`\`\`
+
+### Key Takeaways
+1. **Architecture matters:** Plan before you code.
+2. **Tooling:** Use the right tools for the job (e.g., Docker for consistency).
+
+> "Good code is its own best documentation." - Steve McConnell
 
 ## Conclusion
-Sum up your thoughts and perhaps add a call to action.
+Summarize the main points. What's the next step for the reader?
+
+---
+*Enjoyed this post? Check out more on my portfolio at [github.com/januarsyah901](https://github.com/januarsyah901).*
 `
   },
   {
     id: 'resume',
-    label: 'Resume / CV',
-    description: 'Professional resume layout',
-    content: `# Your Name
-📍 Location | 📞 Phone | 📧 Email | 🔗 Portfolio
+    label: 'Developer Resume',
+    description: 'ATS-friendly, clean professional CV format',
+    content: `# Januarsyah Akbar
+**Software Developer**
+
+📍 Yogyakarta, Indonesia | 🐙 [github.com/januarsyah901](https://github.com/januarsyah901)
 
 ---
 
-## 💼 Professional Experience
-### Senior Developer | Tech Corp (2020 - Present)
-- Led team of 5 developers to ship 3 major products.
-- Improved application performance by 40%.
+## 👨‍💻 Summary
+A passionate software developer with expertise in modern web technologies and a strong focus on building scalable, user-centric applications. Experienced in leading development teams and managing end-to-end project lifecycles.
 
-### Web Developer | StartUp Inc (2018 - 2020)
-- Built responsive UIs using React and Tailwind.
+## 💼 Experience
+
+### Lead Developer | AutoService Web Panel
+*March 2026 – Present*
+- Architected and developed a comprehensive web panel for digitizing auto service workshop inventory and operations.
+- Implemented robust database structures using Prisma and Next.js.
+
+### VR Developer | Perioperative Simulation
+*Early 2026*
+- Engineered a VR simulation for the Faculty of Nursing using Oculus Quest.
+- Collaborated with cross-functional teams to define Product Requirement Documents (PRD).
+
+## 🛠 Technical Skills
+- **Languages:** JavaScript, TypeScript
+- **Frontend:** Next.js, React, Tailwind CSS
+- **Backend & DB:** Node.js, Prisma
+- **DevOps & Tools:** Docker, CapRover, Git
 
 ## 🎓 Education
-### BSc Computer Science | Tech University (2014 - 2018)
-
-## 🛠 Skills
-- **Languages:** JavaScript, Python, Go
-- **Frameworks:** React, Next.js, Express
-- **Tools:** Docker, Git, AWS
+**Universitas Gadjah Mada (UGM)**
+*Sekolah Vokasi*
 `
   },
   {
     id: 'meeting',
-    label: 'Meeting Notes',
-    description: 'Quick notes format for meetings',
-    content: `# 📅 Meeting: Project Sync
-**Date:** March 15, 2024
-**Attendees:** Alice, Bob, Charlie
+    label: 'Engineering Sync Notes',
+    description: 'Structured format for technical meetings and standups',
+    content: `# 📅 Engineering Sync: [Project Name]
+**Date:** 2026-04-02
+**Facilitator:** Januarsyah Akbar
+**Attendees:** [List names]
 
 ---
 
-## 🎯 Agenda
-1. Review roadmap
-2. Discuss infrastructure blockers
-3. QA testing phase
+## 🎯 Objectives
+- Unblock frontend integration.
+- Finalize database schema migration.
 
-## 📝 Discussion
-- Alice reported progress on the backend API.
-- Bob mentioned latency issues in staging environment.
+## 🗣 Discussion Points
+1. **API Integration:** Encountered CORS issues on the staging environment.
+2. **Performance:** Need to optimize image loading on the dashboard.
+
+## 📌 Decisions Made
+- We will migrate to the new Prisma schema by Friday.
+- Docker containers will be used for all local environments to ensure consistency.
 
 ## ✅ Action Items
-- [ ] Alice: finalize documentation
-- [ ] Bob: investigate staging latency
-- [ ] Charlie: prep for demo
+- [ ] **[Name]:** Update Nginx config on CapRover to fix CORS.
+- [ ] **[Name]:** Implement lazy loading for images.
+- [ ] **[Name]:** Schedule code review for the VR module.
 `
   },
   {
     id: 'technical',
-    label: 'Technical Doc',
-    description: 'Architecture and API reference',
-    content: `# 🏗 System Architecture Overview
+    label: 'Architecture Document',
+    description: 'High-level system design and API documentation',
+    content: `# 🏗 System Architecture & API Reference
 
-## Overview
-This document describes the high-level architecture of the system.
+## 1. System Overview
+Provide a high-level description of the system. What business problem does it solve?
 
-## Components
-### 1. Frontend
-Built with React and Vite for blazing fast performance.
+## 2. Infrastructure Diagram
+\`\`\`mermaid
+graph TD;
+    Client-->|HTTPS| LoadBalancer;
+    LoadBalancer-->NextJS_App;
+    NextJS_App-->Node_API;
+    Node_API-->PostgreSQL;
+\`\`\`
 
-### 2. Backend API
-RESTful API built with Node.js.
+## 3. Technology Stack
+- **Client:** Next.js
+- **API:** REST / GraphQL
+- **Database:** PostgreSQL (via Prisma)
+- **Deployment:** Docker on CapRover
 
-## API Reference
-### Endpoint: \`GET /api/v1/users\`
-Returns list of all active users.
+## 4. API Documentation
 
-#### Response Example:
+### \`GET /api/v1/resource\`
+Fetches a list of resources.
+
+**Headers:**
+| Key | Value | Required |
+|---|---|---|
+| \`Authorization\` | \`Bearer <token>\` | Yes |
+
+**Response (200 OK):**
 \`\`\`json
 {
-  "status": "success",
-  "data": []
+  "success": true,
+  "data": [
+    {
+      "id": "uuid",
+      "name": "Example"
+    }
+  ]
 }
 \`\`\`
 `

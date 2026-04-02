@@ -1,13 +1,33 @@
+import { forwardRef, useImperativeHandle, useRef } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import { languages } from '@codemirror/language-data';
 import { oneDark } from '@codemirror/theme-one-dark';
 import { githubLight } from '@uiw/codemirror-theme-github';
 
-export default function Editor({ value, onChange, isDark }) {
+const Editor = forwardRef(({ value, onChange, isDark }, ref) => {
+  const editorRef = useRef(null);
+
+  useImperativeHandle(ref, () => ({
+    insertText: (text) => {
+      const view = editorRef.current?.view;
+      if (!view) return;
+      
+      const { state, dispatch } = view;
+      const { from, to } = state.selection.main;
+      
+      dispatch({
+        changes: { from, to, insert: text },
+        selection: { anchor: from + text.length },
+        scrollIntoView: true
+      });
+    }
+  }));
+
   return (
     <div className="h-full w-full overflow-hidden bg-white dark:bg-[#282c34]">
       <CodeMirror
+        ref={editorRef}
         value={value}
         height="100%"
         extensions={[
@@ -41,4 +61,8 @@ export default function Editor({ value, onChange, isDark }) {
       />
     </div>
   );
-}
+});
+
+Editor.displayName = 'Editor';
+
+export default Editor;

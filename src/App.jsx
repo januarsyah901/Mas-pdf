@@ -100,10 +100,15 @@ export default function App() {
 
   const toggleDarkMode = () => setIsDark(!isDark);
 
+
   const handleInsert = useCallback((text) => {
-    // Basic append for now, ideally we use cursor position from Editor ref
-    updateContent(activeContent + text);
-  }, [activeContent, updateContent]);
+    if (editorRef.current?.insertText) {
+      editorRef.current.insertText(text);
+    } else {
+      // Fallback
+      updateContent(activeContent + text);
+    }
+  }, [activeContent, updateContent, editorRef]);
 
   const handleImageUpload = async (file) => {
     if (file.size > 2 * 1024 * 1024) {
@@ -161,6 +166,43 @@ export default function App() {
     }
   };
 
+  // Keyboard shortcut system
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Exit Focus Mode with ESC
+      if (e.key === 'Escape' && isFocusMode) {
+        e.preventDefault();
+        toggleFocusMode(false);
+      }
+
+      // Cmd/Ctrl + S to Save
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        handleSaveMd();
+      }
+
+      // Cmd/Ctrl + E to Export
+      if ((e.ctrlKey || e.metaKey) && e.key === 'e') {
+        e.preventDefault();
+        setIsExportModalOpen(true);
+      }
+
+      // Cmd/Ctrl + Alt + N for New Template
+      if ((e.ctrlKey || e.metaKey) && e.altKey && e.key === 'n') {
+        e.preventDefault();
+        setIsTemplateModalOpen(true);
+      }
+
+      // Cmd/Ctrl + Shift + F for Focus Mode
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'f') {
+        e.preventDefault();
+        toggleFocusMode();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isFocusMode, toggleFocusMode, handleSaveMd]);
+
   const activeTabs = activeTabIds.map(id => documents.find(d => d.id === id)).filter(Boolean);
 
   const words = countWords(activeContent);
@@ -190,6 +232,7 @@ export default function App() {
         onClose={() => setIsExportModalOpen(false)} 
         getPreviewRef={() => previewRef.current}
         selectedFont={selectedFont}
+        customCss={customCss}
       />
 
       <TableEditorModal
@@ -208,7 +251,7 @@ export default function App() {
       <TemplateModal
         isOpen={isTemplateModalOpen}
         onClose={() => setIsTemplateModalOpen(false)}
-        onSelect={(template) => updateContent(template.content)}
+        onSelect={(template) => createDocument(template.label || 'Untitled', template.content)}
       />
 
       <ConfirmModal 
@@ -300,7 +343,7 @@ export default function App() {
                           onPaste={handlePaste}
                           onDrop={handleDrop}
                         >
-                          <Editor value={activeContent} onChange={updateContent} isDark={isDark} ref={editorRef} />
+                          <Editor value={activeContent} onChange={(val) => updateContent(val)} isDark={isDark} ref={editorRef} />
                         </div>
                     </Panel>
 

@@ -1,6 +1,33 @@
 import { v4 as uuidv4 } from 'uuid';
 
-export const createNewDocument = (title = "Untitled", content = "# Untitled\n\nStart writing here...") => {
+export const DEFAULT_CONTENT = `# 🚀 Welcome to Your Markdown Editor!
+
+## Text Formatting
+You can easily write with **bold text**, *italic emphasis*, ~~strikethrough~~, and \`inline code\`.
+
+
+## Code Scripts
+
+\`\`\`javascript
+// Syntax highlighting for your code
+function createMagic(title) {
+  return \`✨ \${title} is awesome!\`;
+}
+\`\`\`
+
+## Mathematical Equations
+
+Write inline math like $E = mc^2$, or use block equations for complex formulas:
+
+$$
+\\begin{align}
+\\text{Area of Circle} &= \\pi r^2 \\\\
+\\text{Volume of Sphere} &= \\frac{4}{3}\\pi r^3
+\\end{align}
+$$
+`;
+
+export const createNewDocument = (title = "Untitled", content = DEFAULT_CONTENT) => {
   return {
     id: uuidv4(),
     title,
@@ -10,15 +37,3 @@ export const createNewDocument = (title = "Untitled", content = "# Untitled\n\nS
     isPinned: false
   };
 };
-
-export const DEFAULT_CONTENT = `# Welcome to your Markdown Editor! ✍️
-
-Start typing on the left, and see the preview on the right. This editor supports real-time rendering, syntax highlighting, and PDF export!
-
-## Features
-
-- **Split-Pane Design**: Seamless editing and previewing experience.
-- **Dark Mode**: Switch between light and dark modes instantly.
-- **Rich Markdown**: Full support for GitHub Flavored Markdown (\`remark-gfm\`).
-- **File Management**: Multiple tabs, saving to .md, opening files, and more!
-`;
