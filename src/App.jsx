@@ -270,9 +270,11 @@ export default function App() {
             >
               <Menu size={20} />
             </button>
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-lg shadow-sm">
-              M
-            </div>
+            <img 
+              src="/icon.svg" 
+              alt="Cak MaD Logo" 
+              className="w-10 h-10 rounded-lg shadow-sm" 
+            />
             <h1 className="text-xl font-bold tracking-tight text-gray-800 dark:text-gray-100 hidden sm:block">
               Cak MaD
             </h1>

@@ -1,42 +1,46 @@
-# 📝 Modern Markdown PDF Editor
+# 📝 Cak MaD Editor
 
 ![Version](https://img.shields.io/badge/version-1.3.0-blue.svg)
 ![React](https://img.shields.io/badge/React-19-blue.svg)
 ![Vite](https://img.shields.io/badge/Vite-8-purple.svg)
 ![Tailwind](https://img.shields.io/badge/Tailwind-3-blue.svg)
 
-A professional, distraction-free Markdown editor built with React and Vite. Edit your documents with a real-time preview and export them to high-quality PDFs with customizable options.
+**Cak MaD Editor** is a professional, high-performance Markdown editor designed for developers and content creators. Built with React and Vite, it offers a seamless writing experience with real-time preview, advanced content rendering (Math, Mermaid, Tables), and high-quality PDF export capabilities.
 
-## ✨ Features
+## ✨ Key Features
 
-- **🚀 Performance-First**: Built with Vite 8 for blazing-fast development and build cycles.
-- **⚡ Content Power-ups (v1.3)**:
-  - **Table Editor GUI**: Insert complex markdown tables with a visual interface.
-  - **Image Paste/Upload**: Drag & drop or paste images directly into the editor (auto-converted to Base64).
-  - **Math Support**: Render inline ($formula$) and block ($$formula$$) LaTeX math using KaTeX.
-  - **Mermaid Diagrams**: Create flowcharts, sequence diagrams, and more with Mermaid.js.
-  - **Font Customization**: Choose from Poppins, Playfair Display, Lora, Fira Code, or Times New Roman.
-  - **Custom CSS Overrides**: Add document-specific CSS to live-style your preview panel.
-  - **Template Starter**: Start new documents from README, Blog, Resume, or Meeting Note templates.
-- **📁 Multi-Document Management**: 
-  - Sidebar file explorer to manage all your documents.
-  - Tabbed interface to work on multiple files simultaneously.
-  - Documents are automatically saved to `localStorage`.
-- **📥 Import & Export**:
-  - Drag & Drop `.md` files directly into the editor.
-  - Save your work as native Markdown files.
-  - High-quality PDF export with customizable page size and margins.
-- **👁️ Real-Time Preview**: Live rendering with GitHub Flavored Markdown (GFM) support.
-- **🛠️ Rich Editor**:
-  - Powered by CodeMirror with Markdown syntax highlighting.
-  - Toolbar for quick formatting (Bold, Italic, Headers, etc.).
-  - Scroll Synchronization between editor and preview.
+- **🚀 Ultra-Fast Performance**: Powered by Vite 8 for near-instant development and build cycles.
+- **⚡ Content Power-ups (New in v1.3)**:
+  - **Table Editor GUI**: A visual modal for creating and inserting complex Markdown tables effortlessly.
+  - **Multimedia Integration**: Paste images directly or drag & drop. Automatic Base64 conversion (2MB limit).
+  - **Scientific Writing**: Native support for **LaTeX** (Inline `$formula$` and Block `$$formula$$`) via KaTeX.
+  - **Diagrams & Flowcharts**: Render **Mermaid** diagrams directly within code blocks.
+  - **Custom Typography**: Choose from premium fonts: Poppins, Playfair Display, Lora, Fira Code, and systemic Times New Roman.
+  - **Styling Freedom**: Per-document **Custom CSS** injection to perfectly match your preview needs.
+  - **Smart Templates**: Quick starters for README, Blog, Resume, Meeting Notes, and Technical Docs.
+- **📁 Advanced Workspace Management**: 
+  - Persistent sidebar file list with rename/delete functionality.
+  - Tabbed interface for multi-tasking across different documents.
+  - Automatic `localStorage` persistence (no "save" button required for workflow).
+- **📥 Import & Pro Export**:
+  - Drag & Drop local `.md` files to open.
+  - Enhanced PDF Export: Customizable margins, page sizes (A4/A3/Letter), and branding options.
 - **🎨 Premium UI/UX**:
-  - Sleek Dark/Light mode support.
-  - Resizable panels for a flexible workspace.
-  - Distraction-free **Focus Mode**.
-  - Live word and character count.
-  - Toast notifications for user feedback.
+  - Glassmorphic design with native Dark/Light mode support.
+  - Resizable split-panes with scroll synchronization.
+  - **Focus Mode**: A distraction-free writing environment.
+
+## ⌨️ Keyboard Shortcuts
+
+Speed up your workflow with these intuitive shortcuts:
+
+| Shortcut | Action |
+| :--- | :--- |
+| `Ctrl + S` | Save current document as `.md` |
+| `Ctrl + E` | Open PDF Export modal |
+| `Ctrl + Alt + N` | Open Templates modal |
+| `Ctrl + Shift + F` | Toggle Focus Mode |
+| `ESC` | Exit Focus Mode / Close Modals |
 
 ## 🛠️ Tech Stack
 
@@ -44,17 +48,11 @@ A professional, distraction-free Markdown editor built with React and Vite. Edit
 - **Bundler**: [Vite 8](https://vitejs.dev/)
 - **Styling**: [TailwindCSS 3](https://tailwindcss.com/)
 - **Icons**: [Lucide React](https://lucide.dev/)
-- **Editor**: [@uiw/react-codemirror](https://uiwjs.github.io/react-codemirror/)
-- **Markdown Parsing**: [react-markdown](https://github.com/remarkjs/react-markdown) & [remark-gfm](https://github.com/remarkjs/remark-gfm)
-- **PDF Export**: [html2pdf.js](https://ekoopmans.github.io/html2pdf.js/)
-- **Panels**: [react-resizable-panels](https://github.com/bvaughn/react-resizable-panels)
+- **Editor Core**: [@uiw/react-codemirror](https://uiwjs.github.io/react-codemirror/)
+- **Rendering**: [react-markdown](https://github.com/remarkjs/react-markdown), [remark-math](https://github.com/remarkjs/remark-math), [rehype-katex](https://github.com/remarkjs/rehype-katex), [mermaid](https://mermaid.js.org/)
+- **PDF Engine**: [html2pdf.js](https://ekoopmans.github.io/html2pdf.js/)
 
 ## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (Latest LTS recommended)
-- npm or yarn
 
 ### Installation
 
@@ -74,19 +72,15 @@ A professional, distraction-free Markdown editor built with React and Vite. Edit
    npm run dev
    ```
 
-4. Build for production:
-   ```bash
-   npm run build
-   ```
-
 ## 📝 Usage Tips
 
-- **Focus Mode**: Press `Ctrl + Shift + F` or click the expand icon to hide all UI elements except the editor.
-- **File Management**: Click the `+` icon in the sidebar to create a new document. Your files will persist even if you refresh the browser.
-- **Drag & Drop**: Simply drag any `.md` file from your computer into the editor area to open it instantly.
+- **Image Support**: You can copy an image from your computer or web and paste (`Ctrl+V`) it directly into the editor.
+- **Math Formatting**: Use single `$` for inline math like $E=mc^2$ and double `$$` for block formulas.
+- **Custom CSS**: Use the "Custom CSS" button in the footer to add specific styles (e.g., `body { color: blue; }`) that only affect the current document's preview and PDF.
 
 ## 📄 License
 
 This project is private and for personal use.
 
 ---
+Created with ❤️ by **januarsyah901**
